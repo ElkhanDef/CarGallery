@@ -17,8 +17,8 @@ import java.math.BigDecimal;
         property = "vehicle", visible = true
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Motorcycle.class, name = "Motorcycle"),
-        @JsonSubTypes.Type(value = Car.class, name = "Car")
+        @JsonSubTypes.Type(value = MotorcycleResponseDto.class, name = "Motorcycle"),
+        @JsonSubTypes.Type(value = CarResponseDto.class, name = "Car")
 })
 @Getter
 @Setter

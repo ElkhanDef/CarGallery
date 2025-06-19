@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public abstract class Vehicle {
 
     @Id

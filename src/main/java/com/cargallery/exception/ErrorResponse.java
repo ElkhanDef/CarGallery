@@ -1,6 +1,7 @@
 package com.cargallery.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ public class ErrorResponse {
     private String message;
     private String path;
     private String error;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<FieldErrorResponse> fieldErrors;
 
 

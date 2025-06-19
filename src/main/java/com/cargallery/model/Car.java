@@ -1,10 +1,7 @@
 package com.cargallery.model;
 
 import com.cargallery.enums.CarType;
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +20,7 @@ public class Car extends Vehicle {
     private int countOfDoors;
 
     @Column(name = "category", nullable = false)
+   // @Enumerated(EnumType.STRING)
     private CarType category;
 
 }
