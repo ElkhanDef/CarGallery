@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Setter
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class VehicleCreateDto {
+public class VehicleCreateDto {
 
     @NotBlank(message = "This field cannot be left blank")
     @Size(min = 1, max = 30, message = "Model name must be between 2 and 30 characters")

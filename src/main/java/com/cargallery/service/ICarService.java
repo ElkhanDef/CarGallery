@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ICarService {
 
-    public CarResponseDto save(CarCreateDto carCreateDto);
+    CarResponseDto save(CarCreateDto carCreateDto);
+
+    CarResponseDto getById(Long id);
 }

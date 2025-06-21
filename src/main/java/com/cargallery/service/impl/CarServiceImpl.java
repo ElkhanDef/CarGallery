@@ -11,8 +11,6 @@ import com.cargallery.repository.CarRepository;
 import com.cargallery.service.ICarService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements ICarService {
@@ -31,17 +29,27 @@ public class CarServiceImpl implements ICarService {
     public CarResponseDto save(CarCreateDto carCreateDto) {
 
         Brand brand = brandRepository
-                    .findById(carCreateDto.getBrandId())
-                    .orElseThrow(()-> new ResourceNotFoundException("Brand not found"));
+                .findById(carCreateDto.getBrandId())
+                .orElseThrow(() -> new ResourceNotFoundException("Brand not found"));
 
-       Car car = carMapper.toEntity(carCreateDto);
-       car.setBrand(brand);
-       Car savedCar = carRepository.save(car);
+        Car car = carMapper.toEntity(carCreateDto);
+        car.setBrand(brand);
+        Car savedCar = carRepository.save(car);
 
-       CarResponseDto carResponseDto =carMapper.toResponseDto(savedCar);
-       carResponseDto.setBrandName(savedCar.getBrand().getName());
+        CarResponseDto carResponseDto = carMapper.toResponseDto(savedCar);
+        carResponseDto.setBrandName(savedCar.getBrand().getName());
 
-       return carResponseDto;
+        return carResponseDto;
+
+    }
+
+    @Override
+    public CarResponseDto getById(Long id) {
+
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car not found"));
+
+        return carMapper.toResponseDto(car);
 
     }
 }

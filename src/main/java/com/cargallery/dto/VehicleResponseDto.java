@@ -10,21 +10,23 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "vehicle", visible = true
-)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = MotorcycleResponseDto.class, name = "Motorcycle"),
-        @JsonSubTypes.Type(value = CarResponseDto.class, name = "Car")
-})
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+//        include = JsonTypeInfo.As.PROPERTY,
+//        property = "vehicle", visible = true
+//)
+//@JsonSubTypes({
+//        @JsonSubTypes.Type(value = MotorcycleResponseDto.class, name = "Motorcycle"),
+//        @JsonSubTypes.Type(value = CarResponseDto.class, name = "Car"),
+//
+//})
 @Getter
 @Setter
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class VehicleResponseDto {
+public class VehicleResponseDto {
 
     private Long id;
     private String model;
@@ -37,6 +39,7 @@ public abstract class VehicleResponseDto {
     private VehicleStatus status;
     private boolean hasABS;
     private TransmissionType transmission;
+    private LocalDateTime createdAt;
     private String brandName;
 
 

@@ -20,7 +20,7 @@ public class Car extends Vehicle {
     private int countOfDoors;
 
     @Column(name = "category", nullable = false)
-   // @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private CarType category;
 
 }

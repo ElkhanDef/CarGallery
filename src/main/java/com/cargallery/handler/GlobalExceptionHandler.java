@@ -60,7 +60,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = {HttpMessageNotReadableException.class})
     public ResponseEntity<ErrorResponse> handleParsingException(HttpMessageNotReadableException ex, HttpServletRequest request) {
 
-        Throwable cause = ex.getMostSpecificCause();
+        //Throwable cause = ex.getMostSpecificCause();
 
 
         ErrorResponse errorResponse = new ErrorResponse(

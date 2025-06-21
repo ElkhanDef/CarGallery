@@ -5,8 +5,11 @@ import com.cargallery.enums.EngineType;
 import com.cargallery.enums.TransmissionType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -17,7 +20,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-
+@EntityListeners(AuditingEntityListener.class)
 public abstract class Vehicle {
 
     @Id
@@ -61,6 +64,9 @@ public abstract class Vehicle {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id",nullable = false)
     private Brand brand;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
 
 
 }
