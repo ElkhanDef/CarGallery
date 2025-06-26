@@ -5,9 +5,6 @@ import com.cargallery.enums.EngineType;
 import com.cargallery.enums.TransmissionType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -20,7 +17,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public abstract class Vehicle {
 
     @Id
@@ -61,12 +57,29 @@ public abstract class Vehicle {
     @Enumerated(EnumType.STRING)
     private TransmissionType transmission;
 
+    @Column(nullable = false,updatable = false, name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false, name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id",nullable = false)
     private Brand brand;
 
-    @CreatedDate
-    private LocalDateTime createdAt;
+
+    @PrePersist
+    public void setCreatedAt() {
+
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 
 
 }

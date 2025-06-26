@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarServiceImpl implements ICarService {
 
-    CarRepository carRepository;
-    BrandRepository brandRepository;
-    CarMapper carMapper;
+    private final CarRepository carRepository;
+    private final BrandRepository brandRepository;
+    private final CarMapper carMapper;
 
     public CarServiceImpl(CarRepository carRepository, CarMapper carMapper, BrandRepository brandRepository) {
         this.carRepository = carRepository;
@@ -51,5 +51,21 @@ public class CarServiceImpl implements ICarService {
 
         return carMapper.toResponseDto(car);
 
+    }
+
+    @Override
+    public CarResponseDto update(Long id, CarCreateDto carCreateDto) {
+       Car car = carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car not found"));
+
+       Brand brand = brandRepository
+               .findById(carCreateDto.getBrandId())
+               .orElseThrow(() -> new ResourceNotFoundException("Brand not found"));
+
+       carMapper.updateFromDto(carCreateDto, car);
+
+        car.setBrand(brand);
+        
+       return carMapper.toResponseDto(carRepository.save(car));
     }
 }

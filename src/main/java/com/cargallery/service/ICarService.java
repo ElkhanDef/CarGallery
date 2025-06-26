@@ -10,4 +10,6 @@ public interface ICarService {
     CarResponseDto save(CarCreateDto carCreateDto);
 
     CarResponseDto getById(Long id);
+
+    CarResponseDto update(Long id, CarCreateDto carCreateDto);
 }

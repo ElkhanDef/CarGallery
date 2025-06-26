@@ -5,6 +5,7 @@ import com.cargallery.dto.CarResponseDto;
 import com.cargallery.model.Car;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public interface CarMapper {
 
      @Mapping(source = "brand.name", target = "brandName")
      CarResponseDto toResponseDto(Car car);
+
+     @Mapping(target = "brand", ignore = true)
+     void updateFromDto(CarCreateDto carCreateDto ,@MappingTarget Car car);
 
      @Mapping(source = "brand.name", target = "brandName")
      List<CarResponseDto> toResponseDtoList(List<Car> cars);

@@ -24,11 +24,17 @@ public class CarController {
         return ResponseEntity.status(HttpStatus.CREATED).body(carService.save(carCreateDto));
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<CarResponseDto> getById(@PathVariable Long id) {
 
         return ResponseEntity.status(HttpStatus.OK).body(carService.getById(id));
 
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<CarResponseDto> update(@PathVariable Long id,@Valid @RequestBody CarCreateDto carCreateDto) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(carService.update(id, carCreateDto));
     }
 
 
