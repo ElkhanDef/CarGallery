@@ -11,6 +11,9 @@ import com.cargallery.repository.CarRepository;
 import com.cargallery.service.ICarService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 
 @Service
 public class CarServiceImpl implements ICarService {
@@ -55,17 +58,29 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public CarResponseDto update(Long id, CarCreateDto carCreateDto) {
-       Car car = carRepository.findById(id)
+        Car car = carRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Car not found"));
 
-       Brand brand = brandRepository
-               .findById(carCreateDto.getBrandId())
-               .orElseThrow(() -> new ResourceNotFoundException("Brand not found"));
+        Brand brand = brandRepository
+                .findById(carCreateDto.getBrandId())
+                .orElseThrow(() -> new ResourceNotFoundException("Brand not found"));
 
-       carMapper.updateFromDto(carCreateDto, car);
+        carMapper.updateFromDto(carCreateDto, car);
 
         car.setBrand(brand);
-        
-       return carMapper.toResponseDto(carRepository.save(car));
+
+        return carMapper.toResponseDto(carRepository.save(car));
     }
+
+    @Override
+    public void deleteById(Long id) {
+
+        if (!carRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Car with ID " + id + "was not found.");
+        }
+
+
+        carRepository.deleteById(id);
+    }
+
 }

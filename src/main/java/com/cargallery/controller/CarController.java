@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "api/cars")
 public class CarController {
@@ -31,10 +34,18 @@ public class CarController {
 
     }
 
+
     @PutMapping(path = "/{id}")
-    public ResponseEntity<CarResponseDto> update(@PathVariable Long id,@Valid @RequestBody CarCreateDto carCreateDto) {
+    public ResponseEntity<CarResponseDto> update(@PathVariable Long id, @Valid @RequestBody CarCreateDto carCreateDto) {
 
         return ResponseEntity.status(HttpStatus.OK).body(carService.update(id, carCreateDto));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        carService.deleteById(id);
+        return ResponseEntity.noContent().build();
+
     }
 
 
