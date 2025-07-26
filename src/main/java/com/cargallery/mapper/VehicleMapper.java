@@ -1,6 +1,7 @@
 package com.cargallery.mapper;
 
 import com.cargallery.dto.VehicleResponseDto;
+import com.cargallery.dto.VehicleResponseDtoList;
 import com.cargallery.model.Vehicle;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,10 +11,10 @@ import java.util.List;
 public interface VehicleMapper {
 
     @Mapping(source = "brand.name", target = "brandName")
-    VehicleResponseDto toVehicleResponseDto(Vehicle vehicle);
+    VehicleResponseDtoList toVehicleResponseDto(Vehicle vehicle);
 
     @Mapping(source = "brand.name", target = "brandName")
-    List<VehicleResponseDto> toVehicleResponseDtoList(List<Vehicle> vehicles);
+    List<VehicleResponseDtoList> toVehicleResponseDtoList(List<Vehicle> vehicles);
 
 
 }

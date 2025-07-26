@@ -1,16 +1,13 @@
 package com.cargallery.controller;
 
-import com.cargallery.dto.CarResponseDto;
-import com.cargallery.dto.VehicleResponseDto;
+import com.cargallery.dto.VehicleResponseDtoList;
 import com.cargallery.service.IVehicleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -25,9 +22,9 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VehicleResponseDto>> getAllVehicles() {
+    public ResponseEntity<List<VehicleResponseDtoList>> getAllVehicles() {
 
-        List<VehicleResponseDto> vehicles = vehicleService.getAllVehicles();
+        List<VehicleResponseDtoList> vehicles = vehicleService.getAllVehicles();
 
 
         return ResponseEntity.status(HttpStatus.OK).body(vehicles);

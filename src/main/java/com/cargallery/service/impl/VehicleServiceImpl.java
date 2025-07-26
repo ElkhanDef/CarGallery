@@ -2,6 +2,7 @@ package com.cargallery.service.impl;
 
 import com.cargallery.dto.CarResponseDto;
 import com.cargallery.dto.VehicleResponseDto;
+import com.cargallery.dto.VehicleResponseDtoList;
 import com.cargallery.mapper.VehicleMapper;
 import com.cargallery.model.Vehicle;
 import com.cargallery.repository.VehicleRepository;
@@ -23,7 +24,7 @@ public class VehicleServiceImpl implements IVehicleService {
     }
 
     @Override
-    public List<VehicleResponseDto> getAllVehicles() {
+    public List<VehicleResponseDtoList> getAllVehicles() {
 
 
         List<Vehicle> vehicleList = vehicleRepository.findAll();
